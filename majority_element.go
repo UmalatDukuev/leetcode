@@ -9,16 +9,10 @@ func majorityElement(nums []int) int {
 		if cnt == 0 {
 			curr = num
 			cnt++
-			fmt.Printf("%d ", curr)
-			fmt.Println(cnt)
 		} else if curr == num {
 			cnt++
-			fmt.Printf("%d ", curr)
-			fmt.Println(cnt)
 		} else {
 			cnt--
-			fmt.Printf("%d ", curr)
-			fmt.Println(cnt)
 		}
 	}
 	return curr
