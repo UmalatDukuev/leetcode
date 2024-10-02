@@ -2,7 +2,7 @@ package main
 
 import "fmt"
 
-func majority_element(nums []int) int {
+func majorityElement(nums []int) int {
 	curr, cnt := 0, 0
 
 	for _, num := range nums {
@@ -20,5 +20,5 @@ func majority_element(nums []int) int {
 
 func main() {
 	nums := []int{0, 0, 1, 1, 1, 1, 2, 3, 3}
-	fmt.Println(majority_element(nums))
+	fmt.Println(majorityElement(nums))
 }
