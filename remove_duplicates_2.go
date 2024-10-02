@@ -3,29 +3,32 @@ package main
 import "fmt"
 
 func removeDuplicates(nums []int) int {
-	ns := len(nums)
-	cnt := 0
-	i := 0
-	for i < ns-1 {
-		if nums[i+1] == nums[i] {
-			nums[i] = -111
-			cnt++
-		}
-		i++
-	}
-	i, j := 0, 0
-	for i < ns {
-		if nums[i] != -111 {
-			nums[j] = nums[i]
-			j++
-		}
-		i++
+	if len(nums) == 0 {
+		return 0
 	}
 
-	for i := 0; i < ns; i++ {
+	k := 1
+	count := 1
+
+	for i := 1; i < len(nums); i++ {
+		if nums[i] == nums[i-1] {
+			count++
+		} else {
+			count = 1
+		}
+
+		if count <= 2 {
+			nums[k] = nums[i]
+			k++
+		}
+	}
+
+	for i := 0; i < k; i++ {
 		fmt.Printf("%d ", nums[i])
 	}
-	return ns - cnt
+	fmt.Println()
+
+	return k
 }
 
 func main() {
