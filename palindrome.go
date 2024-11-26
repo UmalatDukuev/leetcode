@@ -2,10 +2,14 @@ package main
 
 import "fmt"
 
-func idPalindrome(str string) bool {
+func isPalindrome(str string) bool {
+	for _, value := range str {
+		fmt.Println(value)
+	}
 	return true
 }
 
 func main() {
-	fmt.Println(1)
+	str := "qwerty"
+	fmt.Println(isPalindrome(str))
 }
