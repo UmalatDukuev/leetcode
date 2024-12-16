@@ -21,7 +21,7 @@ import (
 	"fmt"
 )
 
-func result(N int, B int) int {
+func result(N int, B int, A []int) int {
 
 	return 1
 }
@@ -33,7 +33,7 @@ func main() {
 		fmt.Println("Ошибка ввода:", err)
 		return
 	}
-	result := result(N, B)
+
 	A := make([]int, N)
 	for i := 0; i < N; i++ {
 		var num int
@@ -44,6 +44,9 @@ func main() {
 		}
 		A[i] = num
 	}
-	fmt.Println(A)
+	N = 5
+	B = 2
+	C := []int{5, 4, 3, 2, 1}
+	result := result(N, B, C)
 	fmt.Println(result)
 }
