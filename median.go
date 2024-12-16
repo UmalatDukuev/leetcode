@@ -21,13 +21,29 @@ import (
 	"fmt"
 )
 
-func main() {
+func result(N int, B int) int {
 
+	return 1
+}
+
+func main() {
 	var N, B int
 	_, err := fmt.Scan(&N, &B)
 	if err != nil {
 		fmt.Println("Ошибка ввода:", err)
 		return
 	}
-
+	result := result(N, B)
+	A := make([]int, N)
+	for i := 0; i < N; i++ {
+		var num int
+		_, err := fmt.Scan(&num)
+		if err != nil {
+			fmt.Println("Ошибка ввода элементов массива:", err)
+			return
+		}
+		A[i] = num
+	}
+	fmt.Println(A)
+	fmt.Println(result)
 }
