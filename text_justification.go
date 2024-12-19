@@ -19,23 +19,26 @@ func fullJustify(words []string, maxWidth int) []string {
 	}
 	fmt.Println(spaces)
 
-	result_strings := make([]string, 0)
-	// substr := ""
+	result_strings := make([]string, len(spaces))
+	substr := ""
 
 	for i := 0; i < len(spaces)-1; i++ {
 
 		j := int(spaces[i])
-		for j < int(spaces[i+1]) {
-			fmt.Print(words[j])
-			fmt.Print(" ")
+		for j < int(spaces[i+1])-1 {
+			// fmt.Print(words[j])
+			// fmt.Print(" ")
 
-			// substr += words[j] + " "
+			substr += words[j] + " "
 			j++
 		}
-		fmt.Println("")
+		// fmt.Println("")
 
-		// substr += words[j+1]
-		// result_strings = append(result_strings, substr)
+		substr += words[j]
+		fmt.Println(substr)
+		substr = "\"" + substr + "\""
+		result_strings[i] = substr
+		substr = ""
 	}
 
 	fmt.Println(result_strings)
