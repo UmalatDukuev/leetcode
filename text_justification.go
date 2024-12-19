@@ -6,20 +6,31 @@ import (
 
 func fullJustify(words []string, maxWidth int) []string {
 	spaces := make([]int, 1)
+	wordsLen := len(words)
 	strLen := 0
 	cnt := 0
-	for ind, val := range words {
-		strLen += len(val) + 1
+	for _, val := range words {
+		cnt += len(val)
+		fmt.Printf("%s: %d\n", val, len(val))
+		//fmt.Printf("Total %d\n", cnt)
+
+	}
+	fmt.Println("|||||||||||||||||||||||||||||||||||||||")
+
+	for i := 0; i < wordsLen; i++ {
+		strLen += len(words[i]) + 1
 		cnt += 1
-		if strLen > maxWidth {
+		if strLen > maxWidth+1 {
 			fmt.Println(strLen)
-			fmt.Println(val)
+			fmt.Println(words[i])
 
 			cnt = 0
 			strLen = 0
-			spaces = append(spaces, ind)
+			spaces = append(spaces, i)
+			i--
 		}
 	}
+	fmt.Println(spaces)
 	// st := 0
 	// for st < maxWidth {
 	// 	st += len(val)
