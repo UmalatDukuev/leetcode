@@ -2,12 +2,29 @@ package main
 
 import (
 	"fmt"
+	"strings"
 )
 
 func spacing(str []string, maxWidth int, wordsLen int) string {
 	maxSpace := maxWidth - wordsLen
-	fmt.Println("ssssss: ", maxSpace)
-	return ""
+	if len(str) == 1 {
+		return str[0] + strings.Repeat(" ", maxSpace)
+	}
+	if len(str) == 2 {
+		return str[0] + strings.Repeat(" ", maxSpace) + str[1]
+	}
+	// gaps := len(str) - 1
+	// baseSpace := maxSpace / gaps
+	// extraSpaces := maxSpace % gaps
+
+	result := ""
+	// for i := 0; i < len(str)-1; i++ {
+	// 	result += str[i] + strings.Repeat(" ", baseSpace)
+	// 	if i < extraSpaces {
+	// 		result += " "
+	// 	}
+	// }
+	return result
 }
 
 func fullJustify(words []string, maxWidth int) []string {
@@ -38,8 +55,9 @@ func fullJustify(words []string, maxWidth int) []string {
 			//substr += words[j] + " "
 			j++
 		}
-		fmt.Println(subStrs)
-		spacing(subStrs, maxWidth, wordsLen)
+		//fmt.Println(subStrs)
+		substr := spacing(subStrs, maxWidth, wordsLen)
+		fmt.Println(substr)
 
 		//substr += words[j]
 		//fmt.Println(substr)
