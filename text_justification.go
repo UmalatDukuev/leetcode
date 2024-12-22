@@ -30,6 +30,21 @@ func spacing(str []string, maxWidth int, wordsLen int) string {
 	return result
 }
 
+func leftJustify(str []string, maxWidth int, wordsLen int) string {
+	maxSpace := maxWidth - wordsLen
+	if len(str) == 1 {
+		return str[0] + strings.Repeat(" ", maxSpace)
+	}
+	gaps := len(str) - 1
+	result := ""
+	for i := 0; i <= gaps; i++ {
+		result += str[i] + strings.Repeat(" ", 1)
+		maxSpace--
+	}
+	result += strings.Repeat(" ", maxSpace)
+	return result
+}
+
 func fullJustify(words []string, maxWidth int) []string {
 	spaces := make([]int, 1)
 	wordsLen := len(words)
@@ -43,7 +58,7 @@ func fullJustify(words []string, maxWidth int) []string {
 			i--
 		}
 	}
-	spaces = append(spaces, wordsLen)
+	spaces = append(spaces, wordsLen) // массив с индексами слов, после которых нужен перенос строки
 	result := make([]string, 0)
 	for i := 0; i < len(spaces)-1; i++ {
 		subStrs := make([]string, 0)
@@ -53,10 +68,16 @@ func fullJustify(words []string, maxWidth int) []string {
 			wordsLen += len(words[j])
 			subStrs = append(subStrs, words[j])
 			j++
-		}
-		substr := spacing(subStrs, maxWidth, wordsLen)
-		result = append(result, substr)
-		fmt.Println(substr)
+		} // в этом цикле группируем в массив строк слова одной строки
+		if i != len(spaces)-2 {
+			substr := spacing(subStrs, maxWidth, wordsLen)
+			result = append(result, substr)
+			fmt.Println(substr)
+		} else {
+			substr := leftJustify(subStrs, maxWidth, wordsLen)
+			result = append(result, substr)
+			fmt.Println(substr)
+		} // последняя строка обрабатывается иначе
 	}
 
 	return []string{}
