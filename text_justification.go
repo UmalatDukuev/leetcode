@@ -72,19 +72,18 @@ func fullJustify(words []string, maxWidth int) []string {
 		if i != len(spaces)-2 {
 			substr := spacing(subStrs, maxWidth, wordsLen)
 			result = append(result, substr)
-			fmt.Println(substr)
 		} else {
 			substr := leftJustify(subStrs, maxWidth, wordsLen)
 			result = append(result, substr)
-			fmt.Println(substr)
 		} // последняя строка обрабатывается иначе
 	}
 
-	return []string{}
+	return result
 }
 
 func main() {
 	words := []string{"Science", "is", "what", "we", "understand", "well", "enough", "to", "explain", "to", "a", "computer.", "Art", "is", "everything", "else", "we", "do"}
 	maxWidth := 20
-	fullJustify(words, maxWidth)
+	result := fullJustify(words, maxWidth)
+	fmt.Println(result)
 }
