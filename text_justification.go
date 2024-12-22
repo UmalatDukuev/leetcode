@@ -13,17 +13,20 @@ func spacing(str []string, maxWidth int, wordsLen int) string {
 	if len(str) == 2 {
 		return str[0] + strings.Repeat(" ", maxSpace) + str[1]
 	}
-	// gaps := len(str) - 1
-	// baseSpace := maxSpace / gaps
-	// extraSpaces := maxSpace % gaps
+	gaps := len(str) - 1
+	baseSpace := maxSpace / gaps
+	extraSpaces := maxSpace % gaps
 
 	result := ""
-	// for i := 0; i < len(str)-1; i++ {
-	// 	result += str[i] + strings.Repeat(" ", baseSpace)
-	// 	if i < extraSpaces {
-	// 		result += " "
-	// 	}
-	// }
+
+	for i := 0; i < len(str); i++ {
+		if i < extraSpaces {
+			result += str[i] + strings.Repeat(" ", baseSpace) + " "
+		} else {
+			result += str[i] + strings.Repeat(" ", baseSpace)
+		}
+
+	}
 	return result
 }
 
@@ -41,10 +44,7 @@ func fullJustify(words []string, maxWidth int) []string {
 		}
 	}
 	spaces = append(spaces, wordsLen)
-
-	//result_strings := make([]string, len(spaces))
-	//substr := ""
-
+	result := make([]string, 0)
 	for i := 0; i < len(spaces)-1; i++ {
 		subStrs := make([]string, 0)
 		wordsLen := 0
@@ -52,21 +52,12 @@ func fullJustify(words []string, maxWidth int) []string {
 		for j < int(spaces[i+1]) {
 			wordsLen += len(words[j])
 			subStrs = append(subStrs, words[j])
-			//substr += words[j] + " "
 			j++
 		}
-		//fmt.Println(subStrs)
 		substr := spacing(subStrs, maxWidth, wordsLen)
+		result = append(result, substr)
 		fmt.Println(substr)
-
-		//substr += words[j]
-		//fmt.Println(substr)
-		//substr = "\"" + substr + "\""
-		//result_strings[i] = substr
-		//substr = ""
 	}
-
-	//fmt.Println(result_strings)
 
 	return []string{}
 }
