@@ -10,38 +10,26 @@ func spacing(str []string, maxWidth int, wordsLen int) string {
 	if len(str) == 1 {
 		return str[0] + strings.Repeat(" ", maxSpace)
 	}
-	if len(str) == 2 {
-		return str[0] + strings.Repeat(" ", maxSpace) + str[1]
-	}
 	gaps := len(str) - 1
 	baseSpace := maxSpace / gaps
 	extraSpaces := maxSpace % gaps
 
 	result := ""
 
-	for i := 0; i < len(str); i++ {
+	for i := 0; i < len(str)-1; i++ {
+		result += str[i] + strings.Repeat(" ", baseSpace)
 		if i < extraSpaces {
-			result += str[i] + strings.Repeat(" ", baseSpace) + " "
-		} else {
-			result += str[i] + strings.Repeat(" ", baseSpace)
+			result += " "
 		}
-
 	}
+	result += str[len(str)-1]
 	return result
 }
 
 func leftJustify(str []string, maxWidth int, wordsLen int) string {
 	maxSpace := maxWidth - wordsLen
-	if len(str) == 1 {
-		return str[0] + strings.Repeat(" ", maxSpace)
-	}
-	gaps := len(str) - 1
-	result := ""
-	for i := 0; i <= gaps; i++ {
-		result += str[i] + strings.Repeat(" ", 1)
-		maxSpace--
-	}
-	result += strings.Repeat(" ", maxSpace)
+	result := strings.Join(str, " ")
+	result += strings.Repeat(" ", maxSpace-(len(str)-1))
 	return result
 }
 
@@ -82,7 +70,8 @@ func fullJustify(words []string, maxWidth int) []string {
 }
 
 func main() {
-	words := []string{"Science", "is", "what", "we", "understand", "well", "enough", "to", "explain", "to", "a", "computer.", "Art", "is", "everything", "else", "we", "do"}
+	//words := []string{"Science", "is", "what", "we", "understand", "well", "enough", "to", "explain", "to", "a", "computer.", "Art", "is", "everything", "else", "we", "do"}
+	words := []string{"This", "is", "an", "example", "of", "text", "justification."}
 	maxWidth := 20
 	result := fullJustify(words, maxWidth)
 	fmt.Println(result)
