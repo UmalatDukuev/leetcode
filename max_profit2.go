@@ -10,8 +10,6 @@ func maxProfit(prices []int) int {
 		currPrice := prices[i]
 		if prices[i+1] > currPrice {
 			profit += prices[i+1] - currPrice
-			// } else if prices[i] < currPrice{
-
 		}
 		i++
 	}
