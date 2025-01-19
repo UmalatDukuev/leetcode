@@ -1,72 +1,52 @@
 package main
 
 import (
+	"bufio"
 	"fmt"
-	"strconv"
+	"os"
 )
 
-// func deleteMinInNumber(num int) int {
-// 	if num/10 == 0 {
-// 		return 0
-// 	}
-// 	min := 100
-// 	k := 0
-// 	n := num
-// 	for i := 0; num > 0; i++ {
-// 		p := num % 10
-// 		if p <= min {
-// 			min = p
-// 			k = i
-// 		}
-// 		num /= 10
-// 	}
-// 	st := strconv.Itoa(n)
-// 	le := len(st)
-// 	st = st[:(le-k-1)] + st[(le-k):]
-// 	n, _ = strconv.Atoi(st)
-// 	return n
-// }
+func deletePosition(num string, pos int) string {
+	num = num[:pos] + num[pos+1:]
+	return num
+}
 
-func findMax(num int) int {
+func findMax(num string) string {
 	n := num
-	st := strconv.Itoa(n)
-	le := len(st)
-	numbers := make([]int, le)
-	for i := 0; i < le; i++ {
-		st := strconv.Itoa(n)
-		// st = st[:(le-i-1)] + st[(le-i):]
-		st = st[:(le-i-1)] + st[(le-i):]
-		n, _ = strconv.Atoi(st)
-		numbers[i] = n
+	str_len := len(n)
+	if str_len == 1 {
+		return "0"
 	}
-	// st = st[:(le-k-1)] + st[(le-k):]
-	// n, _ = strconv.Atoi(st)
-	fmt.Println(numbers)
-	return numbers[0]
+	ind := 0
+	i := 0
+	for i < str_len-1 {
+		a := string(n[i])
+		b := string(n[i+1])
+		if a < b {
+			ind = i
+			return deletePosition(n, ind)
+		}
+		i++
+	}
+	return deletePosition(n, str_len-1)
 }
 
 func main() {
-	// var in *bufio.Reader
-	// var out *bufio.Writer
-	// in = bufio.NewReader(os.Stdin)
-	// out = bufio.NewWriter(os.Stdout)
-	// defer out.Flush()
-	// var a int
-	// fmt.Fscan(in, &a)
-	// numbers := make([]int, a)
-	// for i := 0; i < a; i++ {
-	// 	fmt.Fscan(in, &numbers[i])
-	// }
-	numbers := []int{984724}
-	// max := -1
+	var in *bufio.Reader
+	var out *bufio.Writer
+	in = bufio.NewReader(os.Stdin)
+	out = bufio.NewWriter(os.Stdout)
+	defer out.Flush()
+	var a int
+	fmt.Fscan(in, &a)
+	numbers := make([]string, a)
+	for i := 0; i < a; i++ {
+		fmt.Fscan(in, &numbers[i])
+	}
 	for i, val := range numbers {
 		numbers[i] = findMax(val)
-		// if numbers[i] > max {
-		// 	max = numbers[i]
-		// }
 	}
 	for _, val := range numbers {
 		fmt.Println(val)
 	}
-
 }
