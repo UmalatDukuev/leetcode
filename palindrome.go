@@ -10,6 +10,6 @@ func isPalindrome(str string) bool {
 }
 
 func main() {
-	str := "qwerty"
+	str := "qwerty1"
 	fmt.Println(isPalindrome(str))
 }
