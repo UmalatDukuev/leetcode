@@ -17,6 +17,7 @@ type Bank struct {
 	DollarsToEuros  Transfer
 	EurosToRubles   Transfer
 	EurosToDollars  Transfer
+	Visited         bool
 }
 
 func findMaxDollar(banks []Bank) float32 {
@@ -55,5 +56,6 @@ func main() {
 	}
 	banks := []Bank{bankA, bankB, bankC}
 	result := findMaxDollar(banks)
+	println(bankA)
 	println(result)
 }
