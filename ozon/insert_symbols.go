@@ -7,21 +7,33 @@ import (
 )
 
 func checkString(strg string) string {
-	var flag string
 	strLen := len(strg)
-	flag = "YES"
 
 	if strLen == 1 {
-		return flag
+		return "YES"
+	}
+	if strLen == 2 {
+		if strg[0] == strg[1] {
+			return "YES"
+		} else {
+			return "NO"
+		}
 	}
 
 	first := strg[0]
-	for i := 0; i < len(strg); i++ {
-		if i%2 == 0 && strg[i] != first {
-			flag = "NO"
+	last := strg[strLen-1]
+
+	if last != first {
+		return "NO"
+	}
+	for i := 1; i < len(strg)-1; i++ {
+		if strg[i] != first {
+			if strg[i-1] != first || strg[i+1] != first {
+				return "NO"
+			}
 		}
 	}
-	return flag
+	return "YES"
 }
 
 func main() {
@@ -31,7 +43,7 @@ func main() {
 
 	var t int
 	fmt.Fscanln(reader, &t)
-
+	//t = 1
 	for i := 0; i < t; i++ {
 		var strg string
 		fmt.Fscanln(reader, &strg)
