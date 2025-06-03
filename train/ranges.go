@@ -18,11 +18,13 @@ func ranges(min, max int, busy []int) [][]int {
 		}
 	}
 	result[0] = append(result[0], min)
+	
+	// for _, rang := range busyInRange {
+	// 	fmt.Print(rang)
+	// 	fmt.Print(" ")
 
-	for _, rang := range busyInRange {
-		fmt.Println(rang)
-
-	}
+	// }
+	fmt.Println(busyInRange)
 	return result
 
 }
