@@ -8,8 +8,7 @@ import (
 func ranges(min, max int, busy []int) [][]int {
 
 	sort.Ints(busy)
-	fmt.Println(busy)
-	result := make([][]int, 1)
+	result := make([][]int, 0)
 	busyInRange := make([]int, 0)
 
 	for _, rang := range busy {
@@ -17,12 +16,18 @@ func ranges(min, max int, busy []int) [][]int {
 			busyInRange = append(busyInRange, rang)
 		}
 	}
-	result[0] = append(result[0], min)
+	currentMin := min
+	for _, b := range busyInRange {
+		if b > currentMin {
+			result = append(result, []int{currentMin, b - 1})
 
-	for _, rang := range busyInRange {
-		fmt.Println(rang)
-
+		}
+		currentMin = b + 1
 	}
+	if currentMin <= max {
+		result = append(result, []int{currentMin, max})
+	}
+
 	return result
 
 }
@@ -30,6 +35,6 @@ func ranges(min, max int, busy []int) [][]int {
 func main() {
 	min := 30000
 	max := 32000
-	busy := []int{31000, 32000, 20000}
+	busy := []int{30100, 30200, 20000}
 	fmt.Println(ranges(min, max, busy))
 }
